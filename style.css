@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100vw;
+    background-color: grey;
+}
+.main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+    gap: 5%;
+}
+.sum-numbers, .detect-even-odd, .staircase, .print-numbers, .guessing-game{
+    text-align: center;
+    width: 50%;
+    padding: 5%;
+    gap: 5%;
+    background-color: rgb(238, 235, 235);
+    border-radius: 5%;
+}
