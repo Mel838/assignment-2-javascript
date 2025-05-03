@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Sum from 0 to N</title>
+</head>
+<body>
+    <div class="main">
+        <div class="sum-numbers">
+            <h2>Sum from 0 to N</h2>
+            <label for="numberInput">Enter a positive integer:</label>
+            <input type="number" id="numberInput" min="0">
+            <button onclick="calculateSum()">Calculate</button>
+            <p id="result"></p>
+        </div>
+        <div class="detect-even-odd">
+            <h2>Even and Odd numbers</h2>
+            <label for="numberInput1">Enter a positive integer:</label>
+            <input type="number" id="numberInput1" min="0">
+            <button onclick="evenoddnumbers()">Detect</button>
+            <p id="result1"></p>
+        </div>
+        <div class="staircase">
+            <h2>Simple Stair Case</h2>
+            <p>Please put a number between 2 to 100</p>
+            <div>
+              <label for="numberInput2">Enter a number:</label>
+              <input type="number" id="numberInput2" min="2" max="100">
+              <button onclick="generateStaircase()">Stair</button>
+            </div>
+            <p id="errorMessage"></p>
+            <div id="stairResult"></div>
+        </div>
+        <div class="print-numbers">
+            <h2>Display Numbers 1 to 100</h2>
+            <button onclick="numbers1to100()">Show Numbers</button>
+            <div id="result3"></div>
+        </div>
+        <div class="guessing-game">
+            <h2>Guessing Game</h2>
+            <label for="numberInput4">Which number between 1 to 100 is neither a prime number nor a composite number?</label>
+            <div>
+              <input type="number" id="numberInput4" min="1" max="100">
+              <button onclick="guessingGame()">Guess</button>
+            </div>
+            <p id="result4"></p>
+        </div>
+    </div>
+  <script>
+    let Experience = prompt("How long have you been in Rebase Academy? (In terms of years)")
+        if (Experience<0){
+            alert(1)
+        }
+        else if (Experience>0){
+            alert(1)
+        }
+        else{
+            alert(0)
+        }
+        let x=0;
+        while (x<100) {
+            console.log(x+1)
+            x++
+        }
+    function calculateSum() {
+            const input = document.getElementById('numberInput').value;
+            const n = parseInt(input);
+            if (isNaN(n) || n < 0) {
+                document.getElementById('result').textContent = 'Please enter a valid non-negative integer.';
+                return;
+            }
+            let sum = 0;
+            for (let i = 0; i <= n; i++) {
+                sum += i;
+            }
+            if (sum % 15 === 0) {
+                document.getElementById('result').textContent = `The sum from 0 to ${n} is: ${sum} FizzBuzz`;
+            } else if (sum % 3 === 0) {
+                document.getElementById('result').textContent = `The sum from 0 to ${n} is: ${sum} Fizz`;
+            } else if (sum % 5 === 0) {
+                document.getElementById('result').textContent = `The sum from 0 to ${n} is: ${sum} Buzz`;
+            } else {
+                document.getElementById('result').textContent = `The sum from 0 to ${n} is: ${sum}`;
+            }
+        }
+    function evenoddnumbers() {
+            const input = document.getElementById('numberInput1').value;
+            const a = parseInt(input);
+            
+            if (isNaN(a) || a < 0) {
+                document.getElementById('result1').textContent = 'Please enter a valid non-negative integer.';
+                return;
+            } else if((a % 2) === 0) {
+                document.getElementById('result1').textContent = `The number you entered ${a} is: even`;
+            } else {
+                document.getElementById('result1').textContent = `The number you entered ${a} is: odd`;
+            }
+        }
+        function generateStaircase() {
+            const input = document.getElementById('numberInput2').value;
+            const n = parseInt(input);
+            const errorMessage = document.getElementById('errorMessage');
+            const stairResult = document.getElementById('stairResult');
+            stairResult.innerHTML = '';
+            errorMessage.textContent = '';
+            errorMessage.classList.remove('error');
+            if (n > 100 || n < 2 || isNaN(n)) {
+                errorMessage.textContent = 'Please enter a valid number between 2 and 100.';
+                errorMessage.classList.add('error');
+                return;
+            }
+            let stairOutput = '';
+            const sym = "*";
+            const sp = "&nbsp;&nbsp;";
+            const bk = "<br/>";
+            for (let i = 1; i <= n; i++) {
+                for (let j = 1; j <= (n - i); j++) {
+                    stairOutput += sp;
+                }
+                for (let j = 1; j <= i; j++) {
+                    stairOutput += sym;
+                }
+                stairOutput += bk;
+            }
+            stairResult.innerHTML = stairOutput;
+        }
+        function numbers1to100() {
+            let output = '';
+            for (let i = 1; i <= 100; i++) {
+                output += i + ' ';
+            }
+            document.getElementById('result3').textContent = output;
+        }
+        function guessingGame() {
+            const input = document.getElementById('numberInput4').value;
+            const n = parseInt(input);
+            const resultElement = document.getElementById('result4');
+            resultElement.className = '';
+            if (isNaN(n) || n <= 0) {
+                resultElement.textContent = 'Please enter a valid positive integer.';
+                resultElement.className = 'error';
+                return;
+            } else if (n > 100) {
+                resultElement.textContent = 'Please enter a number between 1 and 100';
+                resultElement.className = 'error';
+                return;
+            }
+            if (n === 1) {
+                resultElement.textContent = 'Awesome! You got it right Genius!';
+                resultElement.className = 'success';
+                return;
+            }
+            if (n === 2 || n === 3) {
+                resultElement.textContent = 'Sorry, the number you entered is a prime number';
+                return;
+            }
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    resultElement.textContent = 'Sorry, the number you entered is a composite number';
+                    return;
+                }
+            }
+            resultElement.textContent = 'Sorry, the number you entered is a prime number';
+        }
+    </script>
+</body>
+</html>
